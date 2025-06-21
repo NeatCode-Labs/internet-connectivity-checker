@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=Internet Connectivity Checker
+Comment=Monitors internet connectivity status
+Exec=/home/neo/builds/InternetConnectivityChecker/internet_connectivity_checker.py
+Icon=/home/neo/builds/InternetConnectivityChecker/icons/connect/gtk-connect.svg
+Terminal=false
+Categories=Network;System;
+StartupNotify=false
+X-GNOME-Autostart-enabled=true 
