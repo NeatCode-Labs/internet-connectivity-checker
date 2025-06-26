@@ -8,19 +8,15 @@ A **tiny system-tray tool** for Linux that keeps an eye on your internet connect
 *   Works on most modern desktop environments (GNOME, Cinnamon, XFCE, etc.)
 *   Written in plain Python 3 – no compiling required.
 
----
-
-## 1 · Screenshots
+## Screenshots
 
 | Connected | Disconnected (blinking) |
 |-----------|------------------------|
 | <img src="icons/gtk-connect.svg" width="64"/> | <img src="icons/gtk-disconnect.svg" width="64"/> |
 
----
+## Installation
 
-## 2 · Install
-
-### 2.1 Dependencies
+### Dependencies
 
 Make sure the following libraries are installed (they are available in every mainstream distro repository):
 
@@ -32,19 +28,19 @@ sudo apt update && sudo apt install python3-gi gir1.2-gtk-3.0 gir1.2-appindicato
 sudo pacman -S python-gobject gtk3 libappindicator-gtk3
 ```
 
-### 2.2 Clone the project
+### Clone the project
 
 ```bash
-git clone https://github.com/NeatCode-Labs/internet-connectivity-checker.git
-cd internet-connectivity-checker
+git clone https://github.com/NeatCode-Labs/InternetConnectivityChecker.git
+cd InternetConnectivityChecker
 chmod +x internet_connectivity_checker.py  # make the script executable
 ```
 
 That's it – no further build steps.
 
----
+## Quick Start
 
-## 3 · Quick start (run manually)
+Run manually:
 
 ```bash
 ./internet_connectivity_checker.py &
@@ -52,13 +48,11 @@ That's it – no further build steps.
 
 A small icon should now appear in your tray. Click it for a menu with "Check Now", "About", and "Quit".
 
----
-
-## 4 · Run automatically on login
+## Auto-start on Login
 
 You have **two** options – pick the one you're comfortable with.
 
-### 4.1 Graphical (Startup Applications)
+### Option 1: Graphical (Startup Applications)
 
 Most desktop environments provide a *Startup Applications* or *Session & Startup* settings panel.
 
@@ -72,18 +66,18 @@ Most desktop environments provide a *Startup Applications* or *Session & Startup
 *Pros*: easiest, visual, no `sudo` required.  
 *Cons*: only runs when **you** log in; if several users share the PC you must repeat for each.
 
-### 4.2 Systemd service (runs for your user account)
+### Option 2: Systemd Service (User)
 
 If you prefer the command-line and want a slightly more "system" approach:
 
 ```bash
-# 1 · Copy the service file
+# 1. Copy the service file
 mkdir -p ~/.config/systemd/user
 cp internet-connectivity-checker.service ~/.config/systemd/user/
 
-# 2 · Enable & start
+# 2. Enable & start
 systemctl --user enable internet-connectivity-checker.service
-systemctl --user start  internet-connectivity-checker.service
+systemctl --user start internet-connectivity-checker.service
 ```
 
 You can check status with `systemctl --user status internet-connectivity-checker.service`.
@@ -93,16 +87,17 @@ You can check status with `systemctl --user status internet-connectivity-checker
 
 > **Tip:** To remove, simply run `systemctl --user disable --now internet-connectivity-checker.service` and delete the copied file.
 
-1. Copy the provided desktop entry into your personal autostart folder:
-   ```bash
-   mkdir -p ~/.config/autostart
-   cp internet-connectivity-checker.desktop ~/.config/autostart/
-   chmod +x ~/.config/autostart/internet-connectivity-checker.desktop  # ensure it is executable
-   ```
+### Option 3: Desktop Entry
 
----
+Copy the provided desktop entry into your personal autostart folder:
 
-## 5 · Configuration
+```bash
+mkdir -p ~/.config/autostart
+cp internet-connectivity-checker.desktop ~/.config/autostart/
+chmod +x ~/.config/autostart/internet-connectivity-checker.desktop
+```
+
+## Configuration
 
 If you want to tweak the check interval, blink speed, or test URL, edit these constants at the top of `internet_connectivity_checker.py`:
 
@@ -119,7 +114,7 @@ TEST_URL       = "https://www.google.com"  # URL used for connectivity check
 * **Increase** (e.g. 5–6) if your link drops packets sporadically and you get false-positive disconnections.
 * **Decrease** to 1 if you prefer an immediate reaction at the risk of a few blinks on brief hiccups.
 
-### 5.1  Customising the tray icons
+### Custom Icons
 
 The two default icons live in the project's `icons/` folder:
 
@@ -147,12 +142,10 @@ You have two ways to use your own graphics:
 
 **Icon format & size**  
 • **SVG** is recommended – it scales perfectly on HiDPI screens.  
-• **PNG** also works;  24 × 24 px or 32 × 32 px are typical tray sizes.  
+• **PNG** also works; 24 × 24 px or 32 × 32 px are typical tray sizes.  
 • Ensure the icons have a transparent background so they look good on any panel theme.
 
----
-
-## 6 · Credits
+## Credits
 
 **Author:** [NeatCode Labs](https://neatcodelabs.com/)
 
@@ -160,10 +153,21 @@ You have two ways to use your own graphics:
 
 Work by *Ian Crane* – see his original *Linux System Tray Internet Status* project and the PyGTK notebook example listed inside the *About → Inspired by* section of the app.
 
-Open *About → Inspired by* for technical credits.  
+Open *About → Inspired by* for technical credits.
+
+## License
+
+This project is released under the **MIT License** – see `LICENSE` file.
 
 ---
 
-## 7 · License
+<div align="center">
 
-This project is released under the **MIT License** – see `LICENSE` file.
+### Support NeatCode Labs
+
+Visit us for more useful tools and projects!
+
+[![Website](https://img.shields.io/badge/Website-neatcodelabs.com-blue?style=for-the-badge)](https://neatcodelabs.com)
+[![Ko-fi](https://img.shields.io/badge/Ko--fi-Support%20Us-ff5e5b?style=for-the-badge&logo=ko-fi)](https://ko-fi.com/neatcodelabs)
+
+</div>
